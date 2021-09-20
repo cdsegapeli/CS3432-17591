@@ -156,7 +156,6 @@ int main(){
 			goto exit;
 		}
 		else{
-			printf("%s\n", str);
 			char **tokens = tokenize(&str[0]);
 			print_tokens(tokens);
 		}
