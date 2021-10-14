@@ -7,7 +7,7 @@ const int MAX = 50;
 int space_char(char c){
 
 	int space = 0;
-
+	// add \0
 	if (c == ' ' || c == '\t' || c == '\n'){
 		space = 1;
 	}
@@ -38,6 +38,7 @@ char *word_start(char *str){
 		start = 0;
 	}
 
+	// move the pointer along until you find a non-whitespace character.
 	start = str;
 	while (space_char(*start)){
 		start++;
@@ -52,7 +53,7 @@ char *word_terminator(char *word){
 	char *terminator = word;
 
 	/* move ther pointer along while it is a non white space character */
-	while ((non_space_char(*terminator)) && (*terminator != '\0')){
+	while ((non_space_char(*terminator))){
 		terminator++;
 	}
 
@@ -79,6 +80,7 @@ int count_words(char *str){
 char *copy_str(char *inStr, short len){
 
 	int i = 1;
+	// add 1 to length since we want the word to be zero terminated.
 	char* word = (char*) malloc(sizeof(char) * (len+1));
 	word[len] = '\0';
 
@@ -100,13 +102,14 @@ char *copy_str(char *inStr, short len){
    		tokens[3] = 0
 */
 char **tokenize(char* str){
-
+	// get how many words we are storing and add 1 since we want it to be zer-terminated..
 	int size = count_words(str) + 1;
 	char** tokens = (char**) malloc(sizeof(char*) * size);
 	char *start = str;
 	char *end = str;
 	int i;
 
+	// set the last element of tokens to 0
 	tokens[size - 1] = 0;
 
 	for (i = 0; i < size-1; i++){
@@ -137,7 +140,7 @@ void print_tokens(char **tokens){
 		putchar('\n');
 		i++;
 	}
-
+	// when using tokens[i] to print the final 0 in the vector i get segmentation fault(core dumped).
 	printf("token[%d] = ", i);
 	putchar('0');
 	putchar('\n');
