@@ -81,29 +81,29 @@ bool interpret(char* instr){
 	int32_t address;
 
 	// find what instruction was given
-	int instruction = find_instruction(tokens);
+int instruction = find_instruction(tokens);
 
 	switch(instruction){
 		case 1:
-			printf("ADD instruction\n");
+			//printf("ADD instruction\n");
 			// get the next token (rd)
 			tokens = strtok(NULL, " ");
 			tokens++;
 			// convert the register to an int value
 			rd = string_to_int(tokens);
-			printf("RD: %d\n", rd);
+			//printf("RD: %d\n", rd);
 
 			// get the next token (rs1)
 			tokens = strtok(NULL, " ");
 			tokens++;
 			rs1 = string_to_int(tokens);
-			printf("RS1: %d\n", rs1);
+			//printf("RS1: %d\n", rs1);
 
 			// get the next token (rs2)
 			tokens = strtok(NULL, ";");
 			tokens++;
 			rs2 = string_to_int(tokens); //+11
-			printf("RS2: %d\n", rs2);
+			//printf("RS2: %d\n", rs2);
 			
 			// add rs1 and rs2 and put it in rd
 			reg[rd] = reg[rs1] + reg[rs2];
@@ -120,19 +120,19 @@ bool interpret(char* instr){
 			rs1 = string_to_int(tokens);
 
 			tokens = strtok(NULL, ";");
-			imm_val = string_to_int(tokens); //+11
+			imm_val = string_to_int(tokens);
 
 			reg[rd] = reg[rs1] + imm_val;
 			break;
 
 		case 3:
-			printf("LW instruction\n");
+			//printf("LW instruction\n");
 			tokens = strtok(NULL, " ");
 			tokens++;
 			rd = string_to_int(tokens);
 
 			tokens = strtok(NULL, "(");
-			imm_val = string_to_int(tokens) / 4;
+			imm_val = string_to_int(tokens) * 2;
 
 			tokens = strtok(NULL, ")");
 			tokens++;
@@ -144,13 +144,13 @@ bool interpret(char* instr){
 			break;
 
 		case 4:
-			printf("SW instruction\n");
+			//printf("SW instruction\n");
 			tokens = strtok(NULL, " ");
 			tokens++;
 			rs2 = string_to_int(tokens);
 
 			tokens = strtok(NULL, "(");
-			imm_val = string_to_int(tokens) / 4;
+			imm_val = string_to_int(tokens) * 2;
 
 			tokens = strtok(NULL, ")");
 			tokens++;
